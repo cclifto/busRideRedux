@@ -1,5 +1,5 @@
 import React from 'react'
-import ACTION from '../action'
+import ACTION from "../action"
 
 const Button = React.createClass({
 	getInitialState: function() {
@@ -26,8 +26,10 @@ const Button = React.createClass({
 			return 
 		}
 		//action to modify store
+		console.log(this.props)
 		var actionName = this.props.action
 		ACTION[actionName]()
+
 
 		//cooldown animation
 		this.setState({

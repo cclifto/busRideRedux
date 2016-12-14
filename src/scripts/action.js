@@ -39,6 +39,35 @@ var ACTION = {
 		// set the flashingStat on the store to be the stat name of what was just updated
 	},
 
+	_addReadButton: function(buttonValue){
+		// you need to use array.concat. look at the docs and play with it in arbiter. 
+		// read the old actionButtons off the store, add a new one, and set the new&improved 
+			// action buttons back on the store
+		console.log("hey hey hey")
+
+		var newButton = [
+				{
+				cooldownTime: 1500,
+				text: 'Read Book',
+				action: '_readBook'
+			}
+		]
+
+		var actionButtons = [ 
+			{
+				cooldownTime: 3000,
+				text: "Talk To Neighbor (He doesn't want to talk to you right now)",
+				action: null
+			}
+		]
+		console.log(newButton)
+		if(STORE._data['Miles Traveled'] === 9){
+				STORE._set({
+			actionButtons: actionButtons.concat(newButton)/*fancy code to read old actionButtons and add newButton to it*/
+				})
+		}
+	},
+
 	_readBook: function(buttonValue){
 		console.log("reading")
 		ACTION._incrementStat('INT')

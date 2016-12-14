@@ -33,6 +33,7 @@ var TextAndChoices = {
 			clickHandler: (e)=>{
 				ACTION._hideEvent(e)
 				ACTION._incrementStat()
+				ACTION._addReadButton()
 			}
 		}]
 	},

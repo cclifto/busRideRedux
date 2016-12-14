@@ -39,7 +39,7 @@ var AppView = React.createClass({
 								return <Button 
 									cooldownTime={buttObj.cooldownTime}
 									text={buttObj.text}
-									action={buttObj.clickHandler}
+									action={buttObj.action}
 								/> })}
 							{/*<Button cooldownTime={2000} text={'Read Book'} action={ACTION._readBook} />
 							<Button cooldownTime={3000} text={'Talk To Neighbor'} action={ACTION._talkToNeighbor} />
