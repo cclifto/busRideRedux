@@ -22,11 +22,11 @@ const Button = React.createClass({
 	_initCooldown: function(event) {
 		//exit if disabled
 		if (!this.state.buttonAvailable) {
-			console.log('button unavailable')
+			ACTION
 			return 
 		}
 		//action to modify store
-		console.log(this.props)
+		ACTION
 		var actionName = this.props.action
 		ACTION[actionName]()
 
@@ -38,7 +38,7 @@ const Button = React.createClass({
 		})
 
 		var reduceCooldown = () => {
-			console.log('reducing cooldown')
+			ACTION
 			if (this.state.cooldownWidth > 0) {
 				this.setState({
 					cooldownWidth: this.state.cooldownWidth - this._getWidthChange()

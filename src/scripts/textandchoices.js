@@ -14,7 +14,7 @@ var TextAndChoices = {
 	},
 
 	secondNeighborTalk:{
-		display_text: "NEIGHBOR: Yeah, what's up? Nothing has really changed since you last talked to me ok?",
+		display_text: "NEIGHBOR: Yeah, what's up? Nothing has really changed since you last talked to me, ok?",
 		choices:[{
 			buttonText: "Ok, sorry, geez...",
 			buttonValue: "cancel",
@@ -40,15 +40,17 @@ var TextAndChoices = {
 
 	devil: {
 		display_text: "You have arrived at your destination: Hell. The Devil is here and he is looking to fight. He notices you and decides he is gonna throw down.",
-		choices: [{buttonText: "ATTACK",
-				   buttonValue: 'attack'},
-				   {buttonText: "CHARM",
-					buttonValue: "love"},
-					{buttonText: "NAH, I'M GOOD",
-					buttonValue: "cancel",
-					clickHandler: (e)=>{
-				ACTION._hideEvent(e)
-				ACTION._incrementStat()
+		choices: [{buttonText: "FIGHT",
+				buttonValue: 'fight',
+				clickHandler: ()=>{
+					ACTION._displayCombat('devil')
+				}
+			},
+				{buttonText: "NAH, I'M GOOD",
+				buttonValue: "cancel",
+				clickHandler: (e)=>{
+					ACTION._hideEvent(e)
+					ACTION._incrementStat()
 			}
 		}]
 	},

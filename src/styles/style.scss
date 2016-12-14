@@ -89,6 +89,28 @@ div .event-content {
     z-index: 1;
 }
 
+div .combat-box {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    background: rgba(0,0,0,.8);
+    left: 0;
+    top: 0;
+}
+
+div .combat-content {
+    width: 40%;
+    margin: 20% auto;
+    border: 1px solid lime;
+    padding: 2rem;
+    box-shadow: 0 0 100px crimson;
+}
+
+.combat-content button{
+    position: relative;
+    z-index: 1;
+}
+
 // STATS ANIMATIONS
 // @keyframes increment{
 //     from {background-color: black;

@@ -1,6 +1,6 @@
 import React from "react"
 import ACTION from '../action'
-import STORE from '../STORE'
+import STORE from '../store'
 
 const Stat = React.createClass({
 
@@ -13,7 +13,6 @@ const Stat = React.createClass({
 	componentWillMount: function() {
 		var initiateFlash = () => {
 			if (STORE._get('flashingStats').includes(this.props.statName)) { // am I the flashing stat???
-				console.log('im flashing!')
 				this.setState({
 					flashOpacity: 1
 				})
@@ -26,7 +25,6 @@ const Stat = React.createClass({
 	},
 
 	_decreaseFlashOpacity: function() {
-		console.log(this.state.flashOpacity)
 		if (this.state.flashOpacity > 0) {
 			this.setState({
 				flashOpacity: this.state.flashOpacity - .016
@@ -44,7 +42,6 @@ const Stat = React.createClass({
 	render: function(){
 		var flashStyle = {opacity: this.state.flashOpacity}
 		var cl = this.props.flashingStat === this.props.statName ? 'flashing' : ''
-		console.log(this.props.statName, cl)
 		return <p className={cl} >{this.props.statName}: {this.props.statVal}
 					<span style={flashStyle} className="flash"></span>
 				</p>

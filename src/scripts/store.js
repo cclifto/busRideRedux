@@ -4,6 +4,8 @@ import TextAndChoices from './textAndChoices'
 
 const STORE = _.extend(Backbone.Events,{
 	_data: {
+		oHP: null,
+		yHP: 10,
 		ATK: 4,
 		DEF: 5,
 		INT: 4,
@@ -12,6 +14,9 @@ const STORE = _.extend(Backbone.Events,{
 		event_display_text: "",
 		event_choices:[],
 		event_showing: false,
+		combat_display_text: "",
+		combat_choices:[],
+		combat_showing: false,
 		flashingStats: [],
 		actionButtons: [ 
 			{
@@ -31,11 +36,11 @@ const STORE = _.extend(Backbone.Events,{
 		this.trigger('STOREChange')
 	},
 	_set: function(obj) {
+		console.log('changing')
 		this._data = _.extend(this._data, obj)
 		this._emitChange()
 	}
 })
 
-window.STORE = STORE
-
+console.log(STORE._get('yHP'))
 export default STORE

@@ -4,7 +4,6 @@ import Backbone from 'backbone'
 import AppView from './views/appView'
 import init from './init'
 
-console.log('hi')
 const app = function() {
 
 	// 4 components

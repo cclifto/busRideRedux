@@ -3,6 +3,7 @@ import Foot from './foot'
 import STORE from '../store'
 import ACTION from '../action'
 import Events from './events'
+import Combat from "./combat"
 import Button from "./button"
 import Stat from "./stat"
 
@@ -23,7 +24,6 @@ var AppView = React.createClass({
 	},
 
 	render: function(){
-		console.log(this.state)
 		// FIRST, BEFORE ANY OTHER WORK
 		// you need to champagne-waterfall your initial state down to the components that need it
 		// and render accordingly in those components.
@@ -55,6 +55,13 @@ var AppView = React.createClass({
 					choices={this.state.event_choices} 
 					display_text={this.state.event_display_text} 
 					showing={this.state.event_showing} 
+					/>
+				<Combat
+					yHP={this.state.yHP}
+					oHP={this.state.oHP}
+					choices={this.state.combat_choices} 
+					display_text={this.state.combat_display_text} 
+					showing={this.state.combat_showing} 
 					/>
 			</div>
 		)

@@ -4,7 +4,7 @@ import TextAndChoices from "../textandchoices"
 var Events = React.createClass({
 
 	_getButtonsArray: function() {
-		console.log("this is props on buttsArray", this.props)
+		
 		var choiceObjs = this.props.choices
 		var buttsArray = []
 		for(var i = 0; i < choiceObjs.length; i++){
