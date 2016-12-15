@@ -13,6 +13,9 @@ var ACTION = {
 		STORE._set({
 			'Miles Traveled': STORE._get('Miles Traveled') + input
 		})
+		// if(STORE._data['Miles Traveled'] === 8){
+		// 	ACTION._triggerDemoDemon()
+		// }
 		if(STORE._data['Miles Traveled'] === 9){
 			ACTION._triggerLesserDemon()
 		}
@@ -31,9 +34,6 @@ var ACTION = {
 				DEF: 6
 			})
 		}
-		// if(STORE._data['Miles Traveled'] === 8){
-		// 	ACTION._triggerDemoDemon()
-		// }
 	},
 
 	_incrementStat: function(statName) {
@@ -187,7 +187,7 @@ var ACTION = {
 	},
 
 	// _triggerDemoDemon: function(){
-	// 	ACTION._displayEvent('demo_demon')
+	// 	ACTION._displayEvent('demoDemon')
 	// },
 
 	_triggerLesserDemon: function(){

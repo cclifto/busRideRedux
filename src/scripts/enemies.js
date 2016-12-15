@@ -15,8 +15,11 @@ var Enemies = {
 		DEF: 1
 	},
 
-	demo_demon:{
-
+	demoDemon: {
+		display_text: "",
+		HP: 2,
+		ATK: 1,
+		DEF: 1
 	}
 
 

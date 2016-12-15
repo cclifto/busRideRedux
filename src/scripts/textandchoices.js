@@ -52,16 +52,16 @@ var TextAndChoices = {
 
 	// ENEMIES
 
-	demoDemon:{
-		display_text:"",
-		choices: [{
-			buttonText: "",
-			buttonValue:"",
-			clickHandler: ()=>{
-				ACTION._displayCombat("demo_demon")
-			}
-		}]
-	},
+	// demoDemon:{
+	// 	display_text:"",
+	// 	choices: [{
+	// 		buttonText: "FIGHT",
+	// 		buttonValue:"fight",
+	// 		clickHandler: ()=>{
+	// 			ACTION._displayCombat("demoDemon")
+	// 		}
+	// 	}]
+	// },
 
 	lesser_demon: {
 		display_text: "The bus is being attacked by some kind of... weird demon thing?",
@@ -82,13 +82,9 @@ var TextAndChoices = {
 					ACTION._displayCombat('devil')
 				}
 			},
-				{buttonText: "NAH, I'M GOOD",
-				buttonValue: "cancel",
-				clickHandler: (e)=>{
-					ACTION._hideEvent(e)
-					ACTION._incrementStat()
+				{buttonText: "NAH, I'M GOOD"			
 			}
-		}]
+				]
 	},
 
 	// YOU BEAT THE GAME
