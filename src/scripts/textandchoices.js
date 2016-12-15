@@ -14,21 +14,9 @@ var TextAndChoices = {
 	},
 
 	secondNeighborTalk:{
-		display_text: "NEIGHBOR: Yeah, what's up? Nothing has really changed since you last talked to me, ok?",
+		display_text: "NEIGHBOR: Nothing has really changed since you last talked to me, ok? You're officially annoying me. Here, read this BOOK.",
 		choices:[{
-			buttonText: "Ok, sorry, geez...",
-			buttonValue: "cancel",
-			clickHandler: (e)=>{
-				ACTION._hideEvent(e)
-				ACTION._incrementStat()
-			}
-		}]
-	},
-
-	thirdNeighborTalk:{
-		display_text: "NEIGHBOR: You're officially annoying me. Leave me alone. Here, read this.",
-		choices:[{
-			buttonText: "(take BOOK) Thanks, dick.",
+			buttonText: "(Take BOOK) Ok, sorry, geez...",
 			buttonValue: "cancel",
 			clickHandler: (e)=>{
 				ACTION._hideEvent(e)
@@ -38,7 +26,53 @@ var TextAndChoices = {
 		}]
 	},
 
+	readAboutDefense:{
+		display_text: "Actually this book is pretty cool. You learned a lot about how to defend yourself. DEF went up by 1!",
+		choices:[{
+			buttonText: "Nice.",
+			buttonValue: "cancel",
+			clickHandler: (e)=>{
+				ACTION._hideEvent(e)
+			}
+		}]
+	},
+
+	// thirdNeighborTalk:{
+	// 	display_text: "NEIGHBOR: You're officially annoying me. Leave me alone. Here, read this.",
+	// 	choices:[{
+	// 		buttonText: "(take BOOK) Thanks, dick.",
+	// 		buttonValue: "cancel",
+	// 		clickHandler: (e)=>{
+	// 			ACTION._hideEvent(e)
+	// 			ACTION._incrementStat()
+	// 			ACTION._addReadButton()
+	// 		}
+	// 	}]
+	// },
+
 	// ENEMIES
+
+	demoDemon:{
+		display_text:"",
+		choices: [{
+			buttonText: "",
+			buttonValue:"",
+			clickHandler: ()=>{
+				ACTION._displayCombat("demo_demon")
+			}
+		}]
+	},
+
+	lesser_demon: {
+		display_text: "The bus is being attacked by some kind of... weird demon thing?",
+			choices: [{
+				buttonText: "FIGHT",
+				buttonValue: 'fight',
+				clickHandler: ()=>{
+					ACTION._displayCombat("lesser_demon")
+				}
+			}]
+	},
 
 	devil: {
 		display_text: "You have arrived at your destination: Hell. The Devil is here and he is looking to fight. He notices you and decides he is gonna throw down.",
@@ -60,11 +94,12 @@ var TextAndChoices = {
 	// YOU BEAT THE GAME
 
 	victory:{
-		display_text: "Oh man, you killed Satan himself! You're one bad dude. Thanks for playing!",
+		display_text: "Oh man, you killed Satan himself! You're one bad hombre. Thanks for playing!",
 		choices:[{buttonText: "PLAY AGAIN?",
 					buttonValue: "reset",
 					clickHandler: (e)=>{
 						ACTION._hideEvent(e)
+						ACTION._resetButtons()
 						ACTION._reset()
 					}}]
 	},

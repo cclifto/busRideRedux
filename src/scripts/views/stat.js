@@ -37,7 +37,6 @@ const Stat = React.createClass({
 			ACTION._unflash()
 		}
 	},
-	// flashprop: this.state.isFlashing:int ? <p className="flashing"> : <p>
 
 	render: function(){
 		var flashStyle = {opacity: this.state.flashOpacity}

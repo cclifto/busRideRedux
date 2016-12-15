@@ -24,9 +24,6 @@ var AppView = React.createClass({
 	},
 
 	render: function(){
-		// FIRST, BEFORE ANY OTHER WORK
-		// you need to champagne-waterfall your initial state down to the components that need it
-		// and render accordingly in those components.
 		return (
 			<div className="body">
 				<div className="main-container">
@@ -41,11 +38,6 @@ var AppView = React.createClass({
 									text={buttObj.text}
 									action={buttObj.action}
 								/> })}
-							{/*<Button cooldownTime={2000} text={'Read Book'} action={ACTION._readBook} />
-							<Button cooldownTime={3000} text={'Talk To Neighbor'} action={ACTION._talkToNeighbor} />
-							<Button cooldownTime={4000} text={'Work Out'} action={ACTION._exercise} />
-							<Button cooldownTime={1000} text={'Do Nothing'} action={ACTION._doNothing} />*/}
-						
 						</div>
 					</div>
 					<Status {...this.state} />

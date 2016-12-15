@@ -9,7 +9,7 @@ var Combat = React.createClass({
 		if(!this.props.showing){
 			classString += " hidden"
 		}
-		console.log(this.props)
+		
 		return(
 			<div className={classString}>
 				<div className="combat-content">

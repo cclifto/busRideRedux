@@ -6,17 +6,9 @@ import init from './init'
 
 const app = function() {
 
-	// 4 components
-		// parent component
-		// footer
-		// scroll window
-			// (OPTIONAL) component for each script "moment"
-		// buttons container
-
 	var Controller = Backbone.Router.extend({
 		routes: {
 			'home': 'handleHome',
-			// 'checkpoint/:title',
 			'*default': 'handleDefault'
 		},
 		handleHome: function(){

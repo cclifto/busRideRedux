@@ -20,13 +20,10 @@ const Button = React.createClass({
 	},
 
 	_initCooldown: function(event) {
-		//exit if disabled
 		if (!this.state.buttonAvailable) {
-			ACTION
 			return 
 		}
 		//action to modify store
-		ACTION
 		var actionName = this.props.action
 		ACTION[actionName]()
 

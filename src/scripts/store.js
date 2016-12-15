@@ -37,12 +37,12 @@ const STORE = _.extend(Backbone.Events,{
 		this.trigger('STOREChange')
 	},
 	_set: function(obj) {
-		console.log('changing')
+		
 		this._data = _.extend(this._data, obj)
 		this._emitChange()
-		console.log(STORE._data.currentEnemy)
+		
 	}
 })
 
-console.log(STORE._get('yHP'))
+
 export default STORE

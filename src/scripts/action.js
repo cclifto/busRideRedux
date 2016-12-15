@@ -1,6 +1,7 @@
 import STORE from "./store"
 import TextAndChoices from "./textandchoices"
 import Enemies from "./enemies"
+
 //below is the import syntax when importing something by name from a file,
 //and that thing is not the default export
 
@@ -12,7 +13,10 @@ var ACTION = {
 		STORE._set({
 			'Miles Traveled': STORE._get('Miles Traveled') + input
 		})
-		if(STORE._data['Miles Traveled'] === 10){
+		if(STORE._data['Miles Traveled'] === 9){
+			ACTION._triggerLesserDemon()
+		}
+		if(STORE._data['Miles Traveled'] >= 10){
 			ACTION._triggerDevil()
 		}
 		if(STORE._data['Miles Traveled'] === 3){
@@ -21,9 +25,15 @@ var ACTION = {
 		if(STORE._data['Miles Traveled'] === 6){
 			ACTION._secondNeighborTalk()
 		}
-		if(STORE._data['Miles Traveled'] === 9){
-			ACTION._thirdNeighborTalk()
+		if(STORE._data['INT'] === 5){
+			ACTION._readAboutDefense()
+			STORE._set({
+				DEF: 6
+			})
 		}
+		// if(STORE._data['Miles Traveled'] === 8){
+		// 	ACTION._triggerDemoDemon()
+		// }
 	},
 
 	_incrementStat: function(statName) {
@@ -39,10 +49,6 @@ var ACTION = {
 	},
 
 	_addReadButton: function(buttonValue){
-		// you need to use array.concat. look at the docs and play with it in arbiter. 
-		// read the old actionButtons off the store, add a new one, and set the new&improved 
-			// action buttons back on the store
-
 		var newButton = [
 				{
 				cooldownTime: 1500,
@@ -58,11 +64,22 @@ var ACTION = {
 				action: null
 			}
 		]
-		if(STORE._data['Miles Traveled'] === 9){
+		if(STORE._data['Miles Traveled'] === 6){
 				STORE._set({
-			actionButtons: actionButtons.concat(newButton)/*fancy code to read old actionButtons and add newButton to it*/
+			actionButtons: actionButtons.concat(newButton)
 				})
 		}
+	},
+
+	_resetButtons: function(buttonValue){		
+				STORE._set({
+			actionButtons: [{
+				cooldownTime: 3000,
+				text: "Talk To Neighbor",
+				action: '_talkToNeighbor'
+			}]
+				})
+	
 	},
 
 	_readBook: function(buttonValue){
@@ -109,18 +126,12 @@ var ACTION = {
 		var loadState = JSON.parse(localStorage.getItem('busRideSimulator'))
 		STORE._set(loadState)
 		ACTION._hideEvent()
-		//2 steps:
-			// 1) read app state from local storage (done)
-			// 2) that app state becomes the STORE's _data
-		// localStorage.setItem('busRideSimulator', loadState)
-		// use a method called JSON.parse to load the 'busRideSimulator' from storage, and then set it on the store
 	},
 
 	_saveToSlot: function(eventObj) {
 		ACTION._hideEvent()
 		var stateAsString = JSON.stringify(STORE._getData())
 		localStorage.setItem('busRideSimulator',stateAsString)
-		// ACTION._hideEvent()
 	},
 
 	_unflash: function() {
@@ -167,8 +178,20 @@ var ACTION = {
 		ACTION._displayEvent('thirdNeighborTalk')
 	},
 
+	_readAboutDefense: function(){
+		ACTION._displayEvent('readAboutDefense')
+	},
+
 	_triggerDevil: function(){
 		ACTION._displayEvent('devil')
+	},
+
+	// _triggerDemoDemon: function(){
+	// 	ACTION._displayEvent('demo_demon')
+	// },
+
+	_triggerLesserDemon: function(){
+		ACTION._displayEvent('lesser_demon')
 	},
 
 	//COMBAT
@@ -176,48 +199,41 @@ var ACTION = {
 	_displayCombat: function(enemyName) {
 		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP
 		STORE._set({
-			// oHP: STORE._get('oHP'),
-			// var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
 			oHP: originalHP,
 			currentEnemy: enemyName,
 			combat_display_text: Enemies[enemyName].display_text,
 			combat_showing: true
 		})
-		console.log(this.state)
-		// this._initializeEnemyStats(enemyName)
 	},
 
-	// _initializeEnemyStats: function(enemyName){
-	// 	var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
-	// 	var oATK = Enemies[enemyName].ATK
-	// 	var oDEF = Enemies[enemyName].DEF
-	// },
 	_randomUpTo: function(maxNum){
 		return Math.floor(Math.random() * maxNum)
 	},
 
 	_attack: function(eventObj){
 		var buttonEl = eventObj.target
-		console.log("here it is", buttonEl.value)
+		
 		var HP = STORE._get('HP')
 		var yATK = STORE._get('ATK')
 		var yDEF = STORE._get('DEF')
-
+		
 		
 		var enemyName = STORE._get('currentEnemy')
 		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP
 		var oATK = Enemies[enemyName].ATK
+		
 		var oDEF = Enemies[enemyName].DEF
-		var dFO = {}
-		dFO = yDEF - ACTION._randomUpTo((oATK + 1))
+		console.log("my attack is", yATK)
+		var dFO = ACTION._randomUpTo(oATK + 1) - yDEF
 		if(dFO < 0){
 			dFO = 0
 		}
-		var dFY = {}
-		dFY = oDEF - ACTION._randomUpTo((yATK + 1))
+		console.log("damage from opponent is", dFO)
+		var dFY = ACTION._randomUpTo(yATK + 1) - oDEF
 		if(dFY < 0){
 			dFY = 0
 		}
+		console.log("damage from player is", dFY)
 
 		STORE._set({
 			oHP: originalHP - dFY,
@@ -232,12 +248,18 @@ var ACTION = {
 		if(STORE._get('oHP') <= 0){
 			ACTION._hideEvent()
 			STORE._set({
+				HP: 10,
+				oHP: null
+			})
+		}
+		if(STORE._get('currentEnemy') === 'devil'){
+			if(STORE._get('oHP') <= 0){
+			ACTION._hideEvent()
+			ACTION._showVictoryEvent()
+			STORE._set({
 				HP: 10
 			})
-			if(Enemies[enemyName] === 'devil'){
-				ACTION._showVictoryEvent()
 			}
-
 		}
 
 	}
