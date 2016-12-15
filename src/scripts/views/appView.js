@@ -59,6 +59,7 @@ var AppView = React.createClass({
 				<Combat
 					yHP={this.state.yHP}
 					oHP={this.state.oHP}
+					currentEnemy ={this.state.currentEnemy}
 					choices={this.state.combat_choices} 
 					display_text={this.state.combat_display_text} 
 					showing={this.state.combat_showing} 

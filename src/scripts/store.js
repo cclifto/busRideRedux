@@ -12,6 +12,7 @@ const STORE = _.extend(Backbone.Events,{
 		LUV: 1,
 		'Miles Traveled': 0,
 		event_display_text: "",
+		currentEnemy: "",
 		event_choices:[],
 		event_showing: false,
 		combat_display_text: "",
@@ -39,6 +40,7 @@ const STORE = _.extend(Backbone.Events,{
 		console.log('changing')
 		this._data = _.extend(this._data, obj)
 		this._emitChange()
+		console.log(STORE._data.currentEnemy)
 	}
 })
 

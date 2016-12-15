@@ -9,13 +9,14 @@ var Combat = React.createClass({
 		if(!this.props.showing){
 			classString += " hidden"
 		}
+		console.log(this.props)
 		return(
 			<div className={classString}>
 				<div className="combat-content">
-					<p>{this.props.combat_display_text}</p>
+					<p>{this.props.display_text}</p>
 					<p>HP: {this.props.yHP}</p>
 					<p>Enemy HP: {this.props.oHP}</p>
-					<button onClick={ACTION._attack}>ATTACK</button>
+					<button value={this.props.currentEnemy} onClick={ACTION._attack}>ATTACK</button>
 				</div>
 			</div>
 		)

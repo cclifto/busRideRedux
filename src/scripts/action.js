@@ -152,27 +152,34 @@ var ACTION = {
 	//COMBAT
 
 	_displayCombat: function(enemyName) {
+		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP
 		STORE._set({
-			oHP: STORE._get('oHP'),
+			// oHP: STORE._get('oHP'),
 			// var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
+			currentEnemy: enemyName,
 			combat_display_text: Enemies[enemyName].display_text,
 			combat_showing: true
 		})
-		this._initializeEnemyStats(enemyName)
+		console.log(this.state)
+		// this._initializeEnemyStats(enemyName)
 	},
 
-	_initializeEnemyStats: function(enemyName){
-		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
-		var oATK = Enemies[enemyName].ATK
-		var oDEF = Enemies[enemyName].DEF
-	},
+	// _initializeEnemyStats: function(enemyName){
+	// 	var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
+	// 	var oATK = Enemies[enemyName].ATK
+	// 	var oDEF = Enemies[enemyName].DEF
+	// },
 
 
-	_attack: function(enemyName){
+	_attack: function(eventObj){
+		var buttonEl = eventObj.target
+		console.log("here it is", buttonEl.value)
 		var yHP = STORE._get('yHP')
 		var yATK = STORE._get('ATK')
 		var yDEF = STORE._get('DEF')
+
 		// STORE._set({
+		var enemyName = STORE._get('currentEnemy')
 		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
 		// var yourOriginalHP = STORE._get('yHP') ? STORE._get('oHP') : Enemies[enemyName].HP 
 		// ^^ try using a ternary statement for this....
@@ -187,7 +194,7 @@ var ACTION = {
 		yDMG = oATK - yDEF
 
 		STORE._set({
-			oHP: originalHP - oDMG
+			oHP: originalHP - oDMG,
 			yHP: yHP - yDMG
 		})
 
