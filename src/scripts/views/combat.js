@@ -13,9 +13,21 @@ var Combat = React.createClass({
 		return(
 			<div className={classString}>
 				<div className="combat-content">
-					<p>{this.props.display_text}</p>
-					<p>HP: {this.props.HP}</p>
-					<p>Enemy HP: {this.props.oHP}</p>
+					<p className="opponentName">{this.props.display_text}</p>
+					<div className="combatStats">
+						<div className="playerStats">
+							<p>Player HP: {this.props.HP}</p>
+							<p>Player ATK: {this.props.ATK}</p>
+							<p>Player DEF: {this.props.DEF}</p>
+						</div>
+					</div>
+					<div className="combatStats">
+						<div className="opponentStats">
+							<p>Enemy HP: {this.props.oHP}</p>
+							<p>Enemy ATK: {this.props.oATK}</p>
+							<p>Enemy DEF: {this.props.oDEF}</p>
+						</div>
+					</div>
 					<button value={this.props.currentEnemy} onClick={ACTION._attack}>ATTACK</button>
 				</div>
 			</div>

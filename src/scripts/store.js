@@ -5,6 +5,8 @@ import TextAndChoices from './textAndChoices'
 const STORE = _.extend(Backbone.Events,{
 	_data: {
 		oHP: null,
+		oATK: null,
+		oDEF: null,
 		HP: 10,
 		ATK: 4,
 		DEF: 5,

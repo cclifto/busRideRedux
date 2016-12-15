@@ -198,8 +198,13 @@ var ACTION = {
 
 	_displayCombat: function(enemyName) {
 		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP
+		var originalATK = STORE._get('oATK') ? STORE._get('oATK') : Enemies[enemyName].ATK
+		var originalDEF = STORE._get('oDEF') ? STORE._get('oDEF') : Enemies[enemyName].DEF
+
 		STORE._set({
 			oHP: originalHP,
+			oATK: originalATK,
+			oDEF: originalDEF,
 			currentEnemy: enemyName,
 			combat_display_text: Enemies[enemyName].display_text,
 			combat_showing: true
