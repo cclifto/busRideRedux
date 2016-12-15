@@ -14,7 +14,7 @@ var Combat = React.createClass({
 			<div className={classString}>
 				<div className="combat-content">
 					<p>{this.props.display_text}</p>
-					<p>HP: {this.props.yHP}</p>
+					<p>HP: {this.props.HP}</p>
 					<p>Enemy HP: {this.props.oHP}</p>
 					<button value={this.props.currentEnemy} onClick={ACTION._attack}>ATTACK</button>
 				</div>

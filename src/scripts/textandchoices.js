@@ -38,6 +38,8 @@ var TextAndChoices = {
 		}]
 	},
 
+	// ENEMIES
+
 	devil: {
 		display_text: "You have arrived at your destination: Hell. The Devil is here and he is looking to fight. He notices you and decides he is gonna throw down.",
 		choices: [{buttonText: "FIGHT",
@@ -54,6 +56,20 @@ var TextAndChoices = {
 			}
 		}]
 	},
+
+	// YOU BEAT THE GAME
+
+	victory:{
+		display_text: "Oh man, you killed Satan himself! You're one bad dude. Thanks for playing!",
+		choices:[{buttonText: "PLAY AGAIN?",
+					buttonValue: "reset",
+					clickHandler: (e)=>{
+						ACTION._hideEvent(e)
+						ACTION._reset()
+					}}]
+	},
+
+	//SAVE AND LOAD FEATURES
 
 	save: {
 		display_text: "Would you like to save your game? (pick a save slot)",
@@ -80,6 +96,18 @@ var TextAndChoices = {
 			buttonValue: 'cancel',
 			clickHandler: eventObj=>ACTION._hideEvent(eventObj)
 			}]
+	},
+
+	deadLoad: {
+		display_text: "You have died. Load a previous game? (pick a slot)",
+		choices: [{
+			buttonText: 'slot 1',
+			buttonValue: 'slot_1',
+			clickHandler: eventObj=>{
+				ACTION._loadFromSlot(eventObj)
+				ACTION._hideEvent(eventObj)
+			}
+		}]
 	}
 }
 

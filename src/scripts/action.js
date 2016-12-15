@@ -12,12 +12,12 @@ var ACTION = {
 		STORE._set({
 			'Miles Traveled': STORE._get('Miles Traveled') + input
 		})
-		if(STORE._data['Miles Traveled'] === 3){
+		if(STORE._data['Miles Traveled'] === 10){
 			ACTION._triggerDevil()
 		}
-		// if(STORE._data['Miles Traveled'] === 3){
-		// 	ACTION._firstNeighborTalk()
-		// }
+		if(STORE._data['Miles Traveled'] === 3){
+			ACTION._firstNeighborTalk()
+		}
 		if(STORE._data['Miles Traveled'] === 6){
 			ACTION._secondNeighborTalk()
 		}
@@ -87,7 +87,21 @@ var ACTION = {
 
 	_hideEvent: function() {
 		STORE._set({
-			event_showing: false
+			event_showing: false,
+			combat_showing: false
+
+		})
+	},
+
+	_reset: function(eventObj){
+		STORE._set({
+			event_showing: false,
+			HP: 10,
+			ATK: 4,
+			DEF: 5,
+			INT: 4,
+			LUV: 1,
+			'Miles Traveled': 0
 		})
 	},
 
@@ -125,8 +139,16 @@ var ACTION = {
 		})
 	},
 
+	_showVictoryEvent: function(){
+		ACTION._displayEvent('victory')
+	},
+
 	_showLoadEvent: function() {
 		ACTION._displayEvent('load')
+	},
+
+	_showDeadLoadEvent: function() {
+		ACTION._displayEvent('deadLoad')
 	},
 
 	_showSaveEvent: function() {
@@ -156,6 +178,7 @@ var ACTION = {
 		STORE._set({
 			// oHP: STORE._get('oHP'),
 			// var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
+			oHP: originalHP,
 			currentEnemy: enemyName,
 			combat_display_text: Enemies[enemyName].display_text,
 			combat_showing: true
@@ -169,45 +192,54 @@ var ACTION = {
 	// 	var oATK = Enemies[enemyName].ATK
 	// 	var oDEF = Enemies[enemyName].DEF
 	// },
-
+	_randomUpTo: function(maxNum){
+		return Math.floor(Math.random() * maxNum)
+	},
 
 	_attack: function(eventObj){
 		var buttonEl = eventObj.target
 		console.log("here it is", buttonEl.value)
-		var yHP = STORE._get('yHP')
+		var HP = STORE._get('HP')
 		var yATK = STORE._get('ATK')
 		var yDEF = STORE._get('DEF')
 
-		// STORE._set({
+		
 		var enemyName = STORE._get('currentEnemy')
-		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP // is there an oHP on the store? no? use starting hp. yes? use store's.
-		// var yourOriginalHP = STORE._get('yHP') ? STORE._get('oHP') : Enemies[enemyName].HP 
-		// ^^ try using a ternary statement for this....
-
+		var originalHP = STORE._get('oHP') ? STORE._get('oHP') : Enemies[enemyName].HP
 		var oATK = Enemies[enemyName].ATK
 		var oDEF = Enemies[enemyName].DEF
-			// oATK: Enemies[enemyName].ATK,
-			// oDEF: Enemies[enemyName].DEF
-		var oDMG = {}
-		oDMG = yATK - oDEF
-		var yDMG = {}
-		yDMG = oATK - yDEF
+		var dFO = {}
+		dFO = yDEF - ACTION._randomUpTo((oATK + 1))
+		if(dFO < 0){
+			dFO = 0
+		}
+		var dFY = {}
+		dFY = oDEF - ACTION._randomUpTo((yATK + 1))
+		if(dFY < 0){
+			dFY = 0
+		}
 
 		STORE._set({
-			oHP: originalHP - oDMG,
-			yHP: yHP - yDMG
+			oHP: originalHP - dFY,
+			HP: HP - dFO
 		})
+		if(STORE._get('HP') <= 0){
+			ACTION._hideEvent()
+			ACTION._showDeadLoadEvent()
 
-		// _incrementStat: function(statName) {
-		// var newData = {}
-		// newData[statName] = STORE._get(statName) + 1
-		// STORE._set(newData)
-		// STORE._set({
-		// 	flashingStats: [statName,'Miles Traveled']
-		// })
-		// STORE.trigger('flash')
-		// actually set a new value for the stat
-		// set the flashingStat on the store to be the stat name of what was just updated
+		}
+
+		if(STORE._get('oHP') <= 0){
+			ACTION._hideEvent()
+			STORE._set({
+				HP: 10
+			})
+			if(Enemies[enemyName] === 'devil'){
+				ACTION._showVictoryEvent()
+			}
+
+		}
+
 	}
 }
 export default ACTION

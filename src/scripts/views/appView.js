@@ -57,7 +57,7 @@ var AppView = React.createClass({
 					showing={this.state.event_showing} 
 					/>
 				<Combat
-					yHP={this.state.yHP}
+					HP={this.state.HP}
 					oHP={this.state.oHP}
 					currentEnemy ={this.state.currentEnemy}
 					choices={this.state.combat_choices} 
@@ -72,7 +72,7 @@ var AppView = React.createClass({
 const Status = React.createClass({
 
 	render: function(){
-		var stats = ['ATK','DEF','INT','LUV', 'Miles Traveled']
+		var stats = ['HP','ATK','DEF','INT','LUV', 'Miles Traveled']
 		var statComponents = stats.map((statStr) => {
 			return <Stat statVal={this.props[statStr]} statName={statStr} />
 		})
