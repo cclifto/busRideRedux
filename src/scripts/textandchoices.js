@@ -52,16 +52,16 @@ var TextAndChoices = {
 
 	// ENEMIES
 
-	// demoDemon:{
-	// 	display_text:"",
-	// 	choices: [{
-	// 		buttonText: "FIGHT",
-	// 		buttonValue:"fight",
-	// 		clickHandler: ()=>{
-	// 			ACTION._displayCombat("demoDemon")
-	// 		}
-	// 	}]
-	// },
+	demoDemon:{
+		display_text:"whoa that's a lotta hoses!",
+		choices: [{
+			buttonText: "FIGHT",
+			buttonValue:"fight",
+			clickHandler: ()=>{
+				ACTION._displayCombat("demoDemon")
+			}
+		}]
+	},
 
 	lesser_demon: {
 		display_text: "The bus is being attacked by some kind of... weird demon thing?",

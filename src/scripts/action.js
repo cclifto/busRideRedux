@@ -186,9 +186,9 @@ var ACTION = {
 		ACTION._displayEvent('devil')
 	},
 
-	// _triggerDemoDemon: function(){
-	// 	ACTION._displayEvent('demoDemon')
-	// },
+	_triggerDemoDemon: function(){
+		ACTION._displayEvent('demoDemon')
+	},
 
 	_triggerLesserDemon: function(){
 		ACTION._displayEvent('lesser_demon')

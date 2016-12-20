@@ -10,8 +10,8 @@ var Foot = React.createClass({
 					<button onClick={ACTION._showLoadEvent}>load</button>
 				</div>
 				<nav>
-					<p>Bus Ride Simulator Redux by Conner Clifton</p>
-					<p>github</p>
+					<p>Bus Ride Simulator Redux by <a href="mailto:cliftonconner@gmail.com">Conner Clifton</a></p>
+					<a href="https://github.com/cclifto/busRideSimulator">github</a>
 				</nav>
 			</footer>
 			)
@@ -19,3 +19,11 @@ var Foot = React.createClass({
 })
 
 export default Foot
+
+/*<nav>
+					<a href="http://www.connerclifton.com">connerclifton.com</a>
+					<a href="http://facebook.com/connerclifton">facebook</a>
+					<a href="https://github.com/cclifto/busRideSimulator">github</a>
+					<a href="http://instagram.com/coonerqueefton">instagram</a>
+					<a href="mailto:cliftonconner@gmail.com">email me</a>
+				</nav>*/

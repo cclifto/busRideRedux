@@ -16,7 +16,7 @@ var Enemies = {
 	},
 
 	demoDemon: {
-		display_text: "",
+		display_text: "Hosebeast",
 		HP: 2,
 		ATK: 1,
 		DEF: 1

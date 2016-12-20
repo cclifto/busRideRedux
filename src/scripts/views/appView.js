@@ -78,7 +78,6 @@ const Status = React.createClass({
 					{statComponents}
 				</div>
 				<div className="inventory">
-					<p>Book</p>
 					<p>Lunch</p>
 					<p>Wrench</p>
 					<p>Exercise Trainer</p>
