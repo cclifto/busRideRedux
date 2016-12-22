@@ -11,7 +11,7 @@ var Foot = React.createClass({
 				</div>
 				<nav>
 					<p>Bus Ride Simulator Redux by <a href="mailto:cliftonconner@gmail.com">Conner Clifton</a></p>
-					<a href="https://github.com/cclifto/busRideSimulator">github</a>
+					<a href="https://github.com/cclifto/busRideRedux">github</a>
 				</nav>
 			</footer>
 			)
