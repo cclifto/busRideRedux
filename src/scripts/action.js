@@ -11,38 +11,17 @@ import Enemies from "./enemies"
 var ACTION = {
 	_incrementMiles: function(input){
 		STORE._set({
-			'Miles Traveled': STORE._get('Miles Traveled') + input
+			'CHORES DONE': STORE._get('CHORES DONE') + input
 		})
-		// if(STORE._data['Miles Traveled'] === 8){
-		// 	ACTION._triggerDemoDemon()
-		// }
-		if(STORE._data['Miles Traveled'] === 9){
-			ACTION._triggerLesserDemon()
-		}
-		if(STORE._data['Miles Traveled'] >= 10){
-			ACTION._triggerDevil()
-		}
-		if(STORE._data['Miles Traveled'] === 3){
-			ACTION._firstNeighborTalk()
-		}
-		if(STORE._data['Miles Traveled'] === 6){
-			ACTION._secondNeighborTalk()
-		}
-		if(STORE._data['INT'] === 5){
-			ACTION._readAboutDefense()
-			STORE._set({
-				DEF: 6
-			})
-		}
 	},
 
 	_incrementStat: function(statName) {
 		var newData = {}
 		newData[statName] = STORE._get(statName) + 1
 		STORE._set(newData)
-		STORE._set({
-			flashingStats: [statName,'Miles Traveled']
-		})
+		// STORE._set({
+		// 	flashingStats: [statName,'Miles Traveled']
+		// })
 		STORE.trigger('flash')
 		// actually set a new value for the stat
 		// set the flashingStat on the store to be the stat name of what was just updated
@@ -82,23 +61,41 @@ var ACTION = {
 	
 	},
 
-	_readBook: function(buttonValue){
-		ACTION._incrementStat('INT')
+// {
+// 				text: 'Do Push Ups',
+// 				action: '_doPushUps'
+// 			},
+// 			{
+// 				text: 'Read a Book',
+// 				action: '_readABook'
+// 			},
+// 			{
+// 				text: 'Clean Some Dishes',
+// 				action: '_cleanDishes'
+// 			},
+// 			{
+// 				text: 'Eat Vegetables',
+// 				action: '_eatVeggies'
+// 			}
+
+
+	_readABook: function(buttonValue){
+		ACTION._incrementStat('KNOWLEDGE')
 		ACTION._incrementMiles(1)
 	},
 
-	_talkToNeighbor: function(buttonValue){
-		ACTION._incrementStat('LUV')
-		ACTION._incrementMiles(3)
-	},
-
-	_exercise: function(buttonValue){
-		ACTION._incrementStat('ATK')
+	_doPushUps: function(buttonValue){
+		ACTION._incrementStat('STRENGTH')
 		ACTION._incrementMiles(1)
 	},
 
-	_doNothing: function(buttonValue){
-		ACTION._incrementStat()
+	_cleanDishes: function(buttonValue){
+		ACTION._incrementStat('DISHES CLEANED')
+		ACTION._incrementMiles(1)
+	},
+
+	_eatVeggies: function(buttonValue){
+		ACTION._incrementStat('HEALTHINESS')
 		ACTION._incrementMiles(1)
 	},
 
@@ -113,12 +110,10 @@ var ACTION = {
 	_reset: function(eventObj){
 		STORE._set({
 			event_showing: false,
-			HP: 10,
-			ATK: 4,
-			DEF: 5,
-			INT: 4,
-			LUV: 1,
-			'Miles Traveled': 0
+			STRENGTH: 0,
+			KNOWLEDGE: 0,
+			'DISHES CLEANED': 0,
+			'HEALTHINESS': 0,
 		})
 	},
 

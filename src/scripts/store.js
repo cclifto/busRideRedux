@@ -7,12 +7,11 @@ const STORE = _.extend(Backbone.Events,{
 		oHP: null,
 		oATK: null,
 		oDEF: null,
-		HP: 10,
-		ATK: 4,
-		DEF: 5,
-		INT: 4,
-		LUV: 1,
-		'Miles Traveled': 0,
+		STRENGTH: 0,
+		KNOWLEDGE: 0,
+		'DISHES CLEANED': 0,
+		'HEALTHINESS': 0,
+		'CHORES DONE': 0,
 		event_display_text: "",
 		currentEnemy: "",
 		event_choices:[],
@@ -23,10 +22,22 @@ const STORE = _.extend(Backbone.Events,{
 		flashingStats: [],
 		actionButtons: [ 
 			{
-				cooldownTime: 3000,
-				text: 'Talk To Neighbor',
-				action: '_talkToNeighbor'
+				text: 'Do Push Ups',
+				action: '_doPushUps'
+			},
+			{
+				text: 'Read a Book',
+				action: '_readABook'
+			},
+			{
+				text: 'Clean Some Dishes',
+				action: '_cleanDishes'
+			},
+			{
+				text: 'Eat Vegetables',
+				action: '_eatVeggies'
 			}
+
 		]
 	},
 	_getData: function() {

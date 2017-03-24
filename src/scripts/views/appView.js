@@ -1,5 +1,4 @@
 import React from "react"
-import Foot from './foot'
 import STORE from '../store'
 import ACTION from '../action'
 import Events from './events'
@@ -27,9 +26,7 @@ var AppView = React.createClass({
 		return (
 			<div className="body">
 				<div className="main-container">
-					<div className="text-box">
-						<p>You have taken your seat on the bus. You've got a long road ahead. Someone is sitting in the seat in front of you.</p>
-					</div>
+					
 					<div className="game-container">
 						<div className="option-box">
 							{this.state.actionButtons.map(function(buttObj){
@@ -42,7 +39,6 @@ var AppView = React.createClass({
 					</div>
 					<Status {...this.state} />
 				</div>
-				<Foot />
 				<Events 
 					choices={this.state.event_choices} 
 					display_text={this.state.event_display_text} 
@@ -68,7 +64,7 @@ var AppView = React.createClass({
 const Status = React.createClass({
 
 	render: function(){
-		var stats = ['HP','ATK','DEF','INT','LUV', 'Miles Traveled']
+		var stats = ['STRENGTH','KNOWLEDGE','DISHES CLEANED','HEALTHINESS', 'CHORES DONE']
 		var statComponents = stats.map((statStr) => {
 			return <Stat statVal={this.props[statStr]} statName={statStr} />
 		})
@@ -76,11 +72,6 @@ const Status = React.createClass({
 			<div className="status-container">
 				<div className="stats">
 					{statComponents}
-				</div>
-				<div className="inventory">
-					<p>Lunch</p>
-					<p>Wrench</p>
-					<p>Exercise Trainer</p>
 				</div>
 			</div>
 		)
